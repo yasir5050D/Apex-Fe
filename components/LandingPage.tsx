@@ -1,4 +1,3 @@
-
 import React from 'react';
 import LogoIcon from './icons/LogoIcon';
 
@@ -12,12 +11,28 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       {/* Header */}
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+          {/* <div className="flex lg:flex-1">
+            <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
+              <LogoIcon className="h-8 w-auto text-indigo-600" />
+              <span className="font-bold text-xl tracking-tight text-gray-900">
+                Abacus <span className="text-green-600">Learning</span>
+                <p className="text-sm text-gray-200 -mt-1">Powered by Career Ready J&amp;K</p>
+              </span>
+            </a>
+          </div> */}
+
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
               <LogoIcon className="h-8 w-auto text-indigo-600" />
-              <span className="font-bold text-xl tracking-tight text-gray-900">Apex Career Learning</span>
+              <div className="flex flex-col leading-tight">
+                <span className="font-bold text-xl tracking-tight text-gray-900">
+                  Abacus <span className="text-green-600">Learning</span>
+                </span>
+                <p className="text-[10px] text-gray-400 -mt-0.5">Powered by Career Ready J&amp;K</p>
+              </div>
             </a>
           </div>
+
           <div className="lg:flex lg:flex-1 lg:justify-end">
             <button
               onClick={onGetStarted}
@@ -52,7 +67,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               Master Your Career.
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Apex Career Learning provides cutting-edge courses to help you level up your skills and achieve your professional goals. Join a community of ambitious learners today.
+              Abacus Learning provides cutting-edge courses to help you level up your skills and
+              achieve your professional goals. Join a community of ambitious learners today.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <button
@@ -78,9 +94,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           ></div>
         </div>
       </main>
-       <footer className="text-center py-8 text-sm text-gray-500">
-            <p>&copy; {new Date().getFullYear()} Apex Career Learning. All rights reserved.</p>
-        </footer>
+      <footer className="text-center py-8 text-sm text-gray-500">
+        <p>&copy; {new Date().getFullYear()} Career Ready J&K. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
