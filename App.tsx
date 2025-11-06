@@ -28,9 +28,7 @@ function App() {
                   <span className="font-bold text-xl tracking-tight text-gray-900">
                     Abacus <span className="text-green-600">Learning</span>
                   </span>
-                  <p className="text-[10px] text-gray-400 -mt-0.5">
-                    Powered by Career Ready J&amp;K
-                  </p>
+                  <p className="text-[10px] text-gray-400 -mt-0.5">By Career Ready J&amp;K</p>
                 </div>
               </a>
             </header>

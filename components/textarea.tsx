@@ -1,27 +1,28 @@
 import React from 'react';
 import ExclamationCircleIcon from './icons/ExclamationCircleIcon';
 
-interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface TextareaFieldProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   error?: string;
   id: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({
+const TextareaField: React.FC<TextareaFieldProps> = ({
   label,
   id,
-  type = 'text',
   name,
   value,
   onChange,
   error,
   autoComplete,
-  maxLength,
+  rows = 4,
+  ...props
 }) => {
   const hasError = !!error;
 
   const baseClasses =
-    'block w-full px-4 py-3 text-sm text-gray-900 bg-white border rounded-md shadow-sm appearance-none focus:outline-none transition-colors duration-200';
+    'block w-full px-4 py-3 text-sm text-gray-900 bg-white border rounded-md shadow-sm appearance-none focus:outline-none transition-colors duration-200 resize-none';
+
   const stateClasses = hasError
     ? 'border-red-500 focus:ring-red-500 focus:border-red-500 pr-10'
     : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500';
@@ -32,20 +33,20 @@ const InputField: React.FC<InputFieldProps> = ({
         {label}
       </label>
       <div className="relative">
-        <input
+        <textarea
           id={id}
           name={name}
-          type={type}
           value={value}
           onChange={onChange}
           autoComplete={autoComplete}
-          maxLength={maxLength}
+          rows={rows}
           className={`${baseClasses} ${stateClasses}`}
           aria-invalid={hasError}
           aria-describedby={hasError ? `${id}-error` : undefined}
+          {...props}
         />
         {hasError && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+          <div className="absolute top-3 right-3 flex items-start pointer-events-none">
             <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
           </div>
         )}
@@ -59,4 +60,4 @@ const InputField: React.FC<InputFieldProps> = ({
   );
 };
 
-export default InputField;
+export default TextareaField;
