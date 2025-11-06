@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import LogoIcon from './icons/LogoIcon';
-import { Card, CardContent } from '@/components/card';
 import {
   Menu,
   X,
@@ -23,6 +22,7 @@ import {
 import { Button } from '@/components/button';
 import Textarea from '@/components/textarea';
 import { Input } from '@/components/input';
+import { Card, CardContent } from '@/components/Card';
 
 interface LandingPageProps {
   onGetStarted: () => void;
