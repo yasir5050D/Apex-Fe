@@ -207,7 +207,9 @@ const RegistrationForm: React.FC = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: `${formData.firstName} ${formData.lastName}`,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          parentage: formData.parentage,
           email: formData.email,
           phoneNumber: formData.mobile,
           address: formData.address,
