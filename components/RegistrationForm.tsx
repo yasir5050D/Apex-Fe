@@ -22,6 +22,7 @@ const DISTRICTS_WITH_TEHSILS: Record<string, string[]> = {
   Kulgam: ['Kulgam', 'Devsar', 'Qaimoh', 'Frisal', 'D.H. Pora'],
   Pulwama: ['Pulwama', 'Tral', 'Pampore', 'Awantipora', 'Litter'],
 };
+const GRADES = ['1ST', '2ND', '3RD', '4th', '5TH', '6th', '7th', '8th', '9th', '10th', '11th', '12th', 'OTHER'];
 
 const NAME_REGEX = /^[A-Za-z\s]+$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,6}$/;
@@ -33,6 +34,7 @@ const RegistrationForm: React.FC = () => {
     lastName: '',
     parentage: '',
     email: '',
+    grade: '',
     mobile: '',
     district: '',
     tehsil: '',
@@ -111,6 +113,7 @@ const RegistrationForm: React.FC = () => {
         parentage: '',
         email: '',
         mobile: '',
+        grade: '',
         district: '',
         tehsil: '',
         address: '',
@@ -130,6 +133,7 @@ const RegistrationForm: React.FC = () => {
 
   // ✅ SMEPay Checkout
   const openSMEPayCheckout = (slug: string, orderId: string, checkoutUrl?: string) => {
+   
     const checkoutFn = window.smepayCheckout || window.SmePayCheckout;
     if (!checkoutFn) {
       if (checkoutUrl) window.open(checkoutUrl, '_blank');
@@ -141,7 +145,8 @@ const RegistrationForm: React.FC = () => {
     checkoutFn({
       slug,
       order_id: orderId,
-      onSuccess: async () => {
+      onSuccess: async (data) => {
+        console.log('✅ Payment Success Callback:', data);
         Swal.fire({
           title: 'Processing Payment...',
           text: 'Please wait while we verify your payment.',
@@ -173,15 +178,17 @@ const RegistrationForm: React.FC = () => {
   // ✅ Validation
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    const checkName = (val: string, field: string) => {
-      if (!val.trim()) newErrors[field] = `${field} is required`;
-      else if (val.trim().length < 3) newErrors[field] = `${field} must be at least 3 characters`;
+    const checkName = (val: string, field: string, label: string) => {
+      if (!val.trim()) newErrors[field] = `${label} is required`;
+      else if (val.trim().length < 3) newErrors[field] = `${label} must be at least 3 characters`;
       else if (!NAME_REGEX.test(val.trim()))
-        newErrors[field] = `${field} should only contain letters`;
+        newErrors[field] = `${label} should only contain letters`;
     };
-    checkName(formData.firstName, 'firstName');
-    checkName(formData.lastName, 'lastName');
-    checkName(formData.parentage, 'parentage');
+    checkName(formData.firstName, 'firstName', 'First name');
+    checkName(formData.lastName, 'lastName', 'Last name');
+    checkName(formData.parentage, 'parentage', 'Parentage');
+
+    if (!formData.grade) newErrors.grade = 'Grade is required';
 
     if (!EMAIL_REGEX.test(formData.email)) newErrors.email = 'Enter a valid email address';
     if (!PHONE_REGEX.test(formData.mobile)) newErrors.mobile = 'Enter a valid 10-digit number';
@@ -212,6 +219,7 @@ const RegistrationForm: React.FC = () => {
           lastName: formData.lastName,
           parentage: formData.parentage,
           email: formData.email,
+          grade: formData.grade,
           phoneNumber: formData.mobile,
           address: formData.address,
           district: formData.district,
@@ -227,7 +235,7 @@ const RegistrationForm: React.FC = () => {
       const payRes = await fetch(`${BASE_URL}/api/payments/initiate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, amount: 100, currency: 'INR' }),
+        body: JSON.stringify({ userId, amount: 1, currency: 'INR' }),
       });
 
       const payData = await payRes.json();
@@ -278,14 +286,32 @@ const RegistrationForm: React.FC = () => {
           />
         </div>
 
-        <InputField
-          id="parentage"
-          label="Parentage"
-          value={formData.parentage}
-          onChange={(e) => setFormData({ ...formData, parentage: e.target.value })}
-          error={errors.parentage}
-          required
-        />
+        <div className="grid md:grid-cols-2 gap-4">
+          <InputField
+            id="parentage"
+            label="Parentage"
+            value={formData.parentage}
+            onChange={(e) => setFormData({ ...formData, parentage: e.target.value })}
+            error={errors.parentage}
+            required
+          />
+           <div>
+            <label className="block text-sm font-medium mb-1">Grade</label>
+            <select
+              value={formData.grade}
+              onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+              className="block w-full px-4 py-3 border rounded-md"
+            >
+              <option value="">Select Grade</option>
+              {GRADES.map((grade) => (
+                <option key={grade}>{grade}</option>
+              ))}
+              
+            </select>
+            {errors.grade && <p className="text-red-600 text-sm">{errors.grade}</p>}
+          </div>
+        </div>
+
 
         <div className="grid md:grid-cols-2 gap-4">
           <InputField
@@ -350,7 +376,6 @@ const RegistrationForm: React.FC = () => {
           value={formData.address}
           onChange={(e) => setFormData({ ...formData, address: e.target.value })}
           error={errors.address}
-          required
         />
 
         <div className="flex flex-col md:flex-row gap-4">
