@@ -661,10 +661,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
         </div>
       </section>
 
-      <footer className="text-center py-8 text-sm text-gray-500">
-        <p>&copy; {new Date().getFullYear()} Career Ready J&K. All rights reserved.</p>
-      </footer>
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4">
