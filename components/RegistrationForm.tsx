@@ -194,8 +194,8 @@ const RegistrationForm: React.FC = () => {
     if (!PHONE_REGEX.test(formData.mobile)) newErrors.mobile = 'Enter a valid 10-digit number';
     if (!formData.district) newErrors.district = 'District is required';
     if (!formData.tehsil) newErrors.tehsil = 'Tehsil is required';
-    if (formData.address.trim().length < 8)
-      newErrors.address = 'Address must be at least 8 characters';
+    if (formData.address.trim().length < 10)
+      newErrors.address = 'Address must be at least 10 characters';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
