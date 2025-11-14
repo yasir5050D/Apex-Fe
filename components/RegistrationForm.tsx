@@ -147,14 +147,14 @@ const RegistrationForm: React.FC = () => {
       order_id: orderId,
       onSuccess: async (data) => {
         console.log('✅ Payment Success Callback:', data);
-        Swal.fire({
-          title: 'Processing Payment...',
-          text: 'Please wait while we verify your payment.',
-          icon: 'info',
-          showConfirmButton: false,
-          allowOutsideClick: false,
-          didOpen: () => Swal.showLoading(),
-        });
+        // Swal.fire({
+        //   title: 'Processing Payment...',
+        //   text: 'Please wait while we verify your payment.',
+        //   icon: 'info',
+        //   showConfirmButton: false,
+        //   allowOutsideClick: false,
+        //   didOpen: () => Swal.showLoading(),
+        // });
 
         // const verified = await verifyPaymentStatus(orderId);
         // if (verified) {
@@ -168,7 +168,7 @@ const RegistrationForm: React.FC = () => {
         // }
       },
       onFailure: async () => {
-        if (currentOrderId) await updatePaymentStatus(currentOrderId, 'failed');
+       // if (currentOrderId) await updatePaymentStatus(currentOrderId, 'failed');
         showErrorMessage('Payment Failed', 'Payment was cancelled or failed.');
         setCurrentOrderId(null);
       },
