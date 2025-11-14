@@ -156,16 +156,16 @@ const RegistrationForm: React.FC = () => {
           didOpen: () => Swal.showLoading(),
         });
 
-        const verified = await verifyPaymentStatus(orderId);
-        if (verified) {
-          const updated = await updatePaymentStatus(orderId, 'success');
-          Swal.close();
-          if (updated) showSuccessMessage(`${formData.firstName} ${formData.lastName}`, orderId);
-          else showErrorMessage('Update Failed', 'Could not update payment status.');
-        } else {
-          Swal.close();
-          showErrorMessage('Verification Failed', 'Could not verify payment.');
-        }
+        // const verified = await verifyPaymentStatus(orderId);
+        // if (verified) {
+        //   const updated = await updatePaymentStatus(orderId, 'success');
+        //   Swal.close();
+        //   if (updated) showSuccessMessage(`${formData.firstName} ${formData.lastName}`, orderId);
+        //   else showErrorMessage('Update Failed', 'Could not update payment status.');
+        // } else {
+        //   Swal.close();
+        //   showErrorMessage('Verification Failed', 'Could not verify payment.');
+        // }
       },
       onFailure: async () => {
         if (currentOrderId) await updatePaymentStatus(currentOrderId, 'failed');
