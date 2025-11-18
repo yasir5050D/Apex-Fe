@@ -35,8 +35,7 @@ export default function PaymentResult() {
 
                 if (
                     payment?.status === true &&
-                    (payment?.payment_status === "TEST_SUCCESS" ||
-                        payment?.payment_status === "SUCCESS")
+                    payment?.paymentStatus === "completed"
                 ) {
                     setIsSuccess(true);
                     setAmount(payment?.amount || null);
@@ -111,10 +110,11 @@ export default function PaymentResult() {
                 </h2>
 
                 {/* Transaction */}
-                <p className="text-gray-700 mb-3">
+                {transactionId && <p className="text-gray-700 mb-3">
                     Transaction ID:{" "}
                     <span className="font-semibold text-gray-900">{transactionId}</span>
                 </p>
+                }
 
                 {/* Amount */}
                 {amount && (
