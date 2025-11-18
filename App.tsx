@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import Home from './src/pages/home';
-import Register from './src/pages/registeration';
 import PaymentResult from './src/pages/PaymentResult';
+import Home from './src/pages/Home';
+import Register from './src/pages/Registeration';
 
 export default function App() {
   return (
