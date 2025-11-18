@@ -7,11 +7,23 @@ export default function PaymentResult() {
 
     const [isSuccess, setIsSuccess] = useState(null);
     const [amount, setAmount] = useState(null);
+    const [transactionId, setTransactionId] = useState(null);
     const [loading, setLoading] = useState(true);
     const [serverMessage, setServerMessage] = useState("");
 
-    // 🚀 BASE URL for your backend
-    const BASE_URL = import.meta.env.VITE_BASE_URL
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+    useEffect(() => {
+        let timer;
+
+        if (!loading) {
+            timer = setTimeout(() => {
+                window.location.href = "/";
+            }, 30000);
+        }
+
+        return () => clearTimeout(timer);
+    }, [loading]);
 
     useEffect(() => {
         async function verifyPayment() {
@@ -19,7 +31,6 @@ export default function PaymentResult() {
                 const res = await fetch(`${BASE_URL}/api/payments/validate/${orderId}`);
                 const result = await res.json();
 
-                console.log("🟣 Payment Verify Response:", result);
                 const payment = result?.data;
 
                 if (
@@ -28,17 +39,14 @@ export default function PaymentResult() {
                         payment?.payment_status === "SUCCESS")
                 ) {
                     setIsSuccess(true);
-
-                    const amt = result?.data?.amount || null;
-
-                    setAmount(amt);
+                    setAmount(payment?.amount || null);
+                    setTransactionId(payment?.transactionId || null);
                     setServerMessage(result.message || "Payment Verified Successfully");
                 } else {
                     setIsSuccess(false);
                     setServerMessage(result.message || "Payment Failed");
                 }
             } catch (error) {
-                console.error("❌ Payment verification failed:", error);
                 setIsSuccess(false);
                 setServerMessage("Server error. Please try again later.");
             } finally {
@@ -49,13 +57,15 @@ export default function PaymentResult() {
         verifyPayment();
     }, [orderId]);
 
-    // Loading UI
+    // Loading Animation
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
-                <div className="text-center">
-                    <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent animate-spin rounded-full mx-auto"></div>
-                    <p className="mt-4 text-gray-600 text-lg">Verifying your payment...</p>
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+                <div className="text-center animate-fadeIn">
+                    <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <p className="mt-6 text-gray-700 text-lg font-medium">
+                        Verifying your payment...
+                    </p>
                 </div>
             </div>
         );
@@ -66,14 +76,16 @@ export default function PaymentResult() {
             className={`min-h-screen flex items-center justify-center ${isSuccess ? "bg-green-50" : "bg-red-50"
                 } py-12 px-4`}
         >
-            <div className="max-w-2xl w-full bg-white rounded-2xl shadow-lg p-10 text-center">
+            <div className="max-w-xl w-full bg-white/80 backdrop-blur-xl border border-white/50 shadow-2xl rounded-3xl p-10 text-center animate-slideUp">
+
+                {/* Icon */}
                 <div className="mb-6">
                     <div
-                        className={`inline-flex items-center justify-center w-20 h-20 rounded-full ${isSuccess ? "bg-green-100" : "bg-red-100"
+                        className={`inline-flex items-center justify-center w-24 h-24 rounded-full shadow-lg ${isSuccess ? "bg-green-100" : "bg-red-100"
                             }`}
                     >
                         <svg
-                            className={`w-10 h-10 ${isSuccess ? "text-green-600" : "text-red-600"
+                            className={`w-14 h-14 ${isSuccess ? "text-green-600" : "text-red-600"
                                 }`}
                             fill="none"
                             stroke="currentColor"
@@ -88,57 +100,77 @@ export default function PaymentResult() {
                                         ? "M5 13l4 4L19 7"
                                         : "M6 18L18 6M6 6l12 12"
                                 }
-                            ></path>
+                            />
                         </svg>
                     </div>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-2">
+                {/* Title */}
+                <h2 className="text-3xl font-extrabold mb-3 text-gray-900">
                     {isSuccess ? "Payment Successful 🎉" : "Payment Failed ❌"}
                 </h2>
 
-                <p className="text-gray-600 mb-2">
-                   Transaction ID: <span className="font-medium">{orderId}</span>
+                {/* Transaction */}
+                <p className="text-gray-700 mb-3">
+                    Transaction ID:{" "}
+                    <span className="font-semibold text-gray-900">{transactionId}</span>
                 </p>
 
+                {/* Amount */}
                 {amount && (
-                    <p className="text-lg font-semibold mb-3">
-                        Amount: ₹{amount}
+                    <p className="text-xl font-bold text-gray-900 mb-4">
+                        Amount Paid: <span className="text-indigo-600">₹{amount}</span>
                     </p>
                 )}
 
-                <p className="text-gray-700 mb-6">{serverMessage}</p>
+                {/* Message */}
+                <p className="text-gray-600 mb-8">{serverMessage}</p>
 
+                {/* Buttons */}
                 {isSuccess ? (
-                    <div className="space-x-4">
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <p className="text-gray-700 font-medium mb-6">
+                            Payment has been successfully done. You will receive a confirmation email shortly.
+                        </p>
                         <Link
                             to="/"
-                            className="px-5 py-2 bg-gradient-to-r from-purple-600 to-cyan-400 text-white rounded-lg font-semibold"
+                            className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold shadow-lg hover:opacity-90"
                         >
                             Back to Home
                         </Link>
-                        <Link to="/register" className="px-5 py-2 border rounded-lg">
+                        <Link
+                            to="/register"
+                            className="px-6 py-2.5 border border-gray-300 rounded-lg font-semibold text-gray-800 hover:bg-gray-100"
+                        >
                             Register Another
                         </Link>
                     </div>
                 ) : (
-                    <div className="space-x-4">
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <p className="text-red-600 font-medium mb-6">
+                            Payment could not be completed. If the amount was deducted, it will be refunded automatically.
+                            Please try again or contact support.
+                        </p>
                         <Link
                             to="/register"
-                            className="px-5 py-2 bg-gradient-to-r from-purple-600 to-cyan-400 text-white rounded-lg font-semibold"
+                            className="px-6 py-2.5 bg-gradient-to-r from-red-600 to-pink-500 text-white rounded-lg font-semibold shadow-lg hover:opacity-90"
                         >
                             Try Again
                         </Link>
-                        <Link to="/" className="px-5 py-2 border rounded-lg">
+                        <Link
+                            to="/"
+                            className="px-6 py-2.5 border border-gray-300 rounded-lg font-semibold text-gray-800 hover:bg-gray-100"
+                        >
                             Back to Home
                         </Link>
                     </div>
                 )}
 
-                <div className="mt-6 text-sm text-gray-500">
+                {/* Support */}
+                <div className="mt-8 text-sm text-gray-500">
                     If you face any issues, contact support at{" "}
                     <a
-                        className="text-blue-600"
+                        className="text-indigo-600 font-medium"
                         href="mailto:support@careerreadyjk.live"
                     >
                         support@careerreadyjk.live
