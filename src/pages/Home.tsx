@@ -140,6 +140,17 @@ export default function Home() {
 
             {/* Hero Section */}
             <main className="relative isolate px-6 pt-14 lg:px-8">
+                <h3 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                    Abacus Learning – A Flagship Program by Career Ready J&K
+                </h3>
+
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                    Career Ready J&amp;K proudly presents Abacus Learning, one of our flagship brain-development
+                    programs designed to strengthen mental arithmetic, sharpen cognitive skills, and build lifelong
+                    confidence in young learners. Specially crafted for children aged 4 to 14 years (Classes 1st to 10th),
+                    this program boosts concentration, memory retention, speed & accuracy, visualization, problem-solving
+                    skills, and overall academic performance.
+                </p>
                 <div
                     className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                     aria-hidden="true"
@@ -153,7 +164,7 @@ export default function Home() {
                     ></div>
                 </div>
 
-                <div className="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
+                <div className="mx-auto max-w-3xl py-8 sm:py-8 lg:py-12">
                     <div className="text-center">
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                             Unlock Your Child's Mental Math Potential.
@@ -188,16 +199,51 @@ export default function Home() {
                 </div>
             </main>
 
+
             <section id="about" className="py-20 bg-white">
                 <div className="container mx-auto px-4">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-gray-900 mb-4">About Abacus Learning</h2>
-                        <p className="text-gray-600">
-                            We are committed to nurturing young minds through structured abacus training that
-                            builds strong mathematical foundations, enhances concentration, and develops cognitive
-                            skills essential for academic and life success.
+
+                        <p className="text-gray-600 mb-6">
+                            Abacus Learning is a flagship brain-development program by Career Ready J&amp;K. Our mission
+                            is to make learning smart, fun, and meaningful for students across Jammu &amp; Kashmir.
+                            The abacus is one of the world’s oldest and most powerful tools for developing a child’s brain.
+                            Through regular practice and guided levels, students learn to perform complex calculations mentally—boosting
+                            confidence, analytical thinking, and academic performance.
                         </p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                            {/* Left Column */}
+                            <div>
+                                <h3 className="text-gray-900 mb-2 font-semibold">Why Abacus Learning?</h3>
+                                <ul className="text-gray-600 space-y-2 mb-6">
+                                    <li>• Enhances concentration and attention span</li>
+                                    <li>• Strengthens memory retention and recall</li>
+                                    <li>• Improves speed &amp; accuracy in problem solving</li>
+                                    <li>• Boosts visualization and cognitive skills</li>
+                                    <li>• Elevates overall academic performance</li>
+                                </ul>
+                            </div>
+
+                            {/* Right Column */}
+                            <div>
+                                <h3 className="text-gray-900 mb-2 font-semibold">Key Highlights</h3>
+                                <ul className="text-gray-600 space-y-2">
+                                    <li>• Level-based structured curriculum</li>
+                                    <li>• Interactive classes with certified Abacus trainers</li>
+                                    <li>• Fun-based learning with engaging activities</li>
+                                    <li>• Complete study material for every registered student</li>
+                                    <li>• Regular assessments and certifications</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
                     </div>
+
+
 
                     <div className="grid md:grid-cols-3 gap-8">
                         <Card className="border-2 hover:border-blue-500 transition-colors">
@@ -578,8 +624,8 @@ export default function Home() {
                                     </div>
                                     <div>
                                         <div className="text-gray-900">Phone</div>
-                                        <p className="text-gray-600">+91 98765 43210</p>
-                                        <p className="text-gray-600">+91 98765 43211</p>
+                                        <p className="text-gray-600">+91 9797240115</p>
+                                        <p className="text-gray-600">+91 7889469804</p>
                                     </div>
                                 </div>
 
@@ -589,8 +635,8 @@ export default function Home() {
                                     </div>
                                     <div>
                                         <div className="text-gray-900">Email</div>
-                                        <p className="text-gray-600">info@careerready-abacus.com</p>
-                                        <p className="text-gray-600">support@careerready-abacus.com</p>
+                                        <p className="text-gray-600">info@careerreadyjk.live</p>
+                                        <p className="text-gray-600">support@careerreadyjk.live</p>
                                     </div>
                                 </div>
 
@@ -600,8 +646,8 @@ export default function Home() {
                                     </div>
                                     <div>
                                         <div className="text-gray-900">Address</div>
-                                        <p className="text-gray-600">123 Education Hub, Sector 62</p>
-                                        <p className="text-gray-600">New Delhi - 110001, India</p>
+                                        <p className="text-gray-600">Imamsahib Shopian</p>
+                                        <p className="text-gray-600">Jammu & Kashmir-192303</p>
                                     </div>
                                 </div>
 
@@ -611,7 +657,7 @@ export default function Home() {
                                     </div>
                                     <div>
                                         <div className="text-gray-900">Working Hours</div>
-                                        <p className="text-gray-600">Mon - Sat: 9:00 AM - 7:00 PM</p>
+                                        <p className="text-gray-600">Mon - Sat: 10:00 AM - 4:00 PM</p>
                                         <p className="text-gray-600">Sunday: Closed</p>
                                     </div>
                                 </div>
