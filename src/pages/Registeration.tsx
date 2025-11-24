@@ -146,25 +146,40 @@ export default function Register() {
 
             const userData = await userRes.json();
             if (!userData.success) throw new Error(userData.error || 'Registration failed');
-            const userId = userData.data?.user?.id;
+            const user = userData.data?.user;
+            const userId = user?.id;
 
-            // 2️⃣ Initiate payment
-            const payRes = await fetch(`${BASE_URL}/api/payments/initiate`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId, amount: 1, currency: 'INR' }),
+            navigate("/register/confirmation", {
+                state: {
+                    userId,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    parentage: user.parentage,
+                    email: user.email,
+                    grade: user.grade,
+                    phoneNumber: user.phoneNumber,
+                    address: user.address,
+                    district: user.district,
+                    tehsil: user.tehsil,
+                }
             });
 
-            const payData = await payRes.json();
-            const orderSlug = payData?.data?.data?.order_slug;
-            const orderId = payData?.data?.data?.order_id;
-            const checkoutUrl = payData?.data?.data?.checkout_url;
+            // 2️⃣ Initiate payment
+            // const payRes = await fetch(`${BASE_URL}/api/payments/initiate`, {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ userId, amount: 1, currency: 'INR' }),
+            // });
 
-            if (!orderSlug || !orderId)
-                throw new Error('Payment initiation failed (missing slug/order ID)');
+            // const payData = await payRes.json();
+            // const orderSlug = payData?.data?.data?.order_slug;
+            // const orderId = payData?.data?.data?.order_id;
+            // const checkoutUrl = payData?.data?.data?.checkout_url;
 
-            // 3️⃣ Open SMEPay widget
-            openSMEPayCheckout(orderSlug, orderId, checkoutUrl);
+            // if (!orderSlug || !orderId)
+            //     throw new Error('Payment initiation failed (missing slug/order ID)');
+
+            // openSMEPayCheckout(orderSlug, orderId, checkoutUrl);
         } catch (err: any) {
             console.error('❌ Registration/payment error:', err.message);
             showErrorMessage('Registration Failed', err.message || 'Unexpected error');
