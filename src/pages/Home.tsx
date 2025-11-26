@@ -53,7 +53,7 @@ export default function Home() {
                             <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">
                                 Home
                             </a>
-                              <a href="/franchise" className="text-gray-700 hover:text-blue-600 transition-colors">Franchise</a>
+                            <a href="/franchise" className="text-gray-700 hover:text-blue-600 transition-colors">Franchise</a>
 
                             <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">
                                 About
@@ -98,7 +98,7 @@ export default function Home() {
                                 >
                                     Home
                                 </a>
-                                  <a href="/franchise" className="text-gray-700 hover:text-blue-600 transition-colors py-2">Franchise</a>
+                                <a href="/franchise" className="text-gray-700 hover:text-blue-600 transition-colors py-2">Franchise</a>
                                 <a
                                     href="#about"
                                     className="text-gray-700 hover:text-blue-600 transition-colors py-2"
@@ -154,6 +154,15 @@ export default function Home() {
                     this program boosts concentration, memory retention, speed & accuracy, visualization, problem-solving
                     skills, and overall academic performance.
                 </p>
+                 <div className="mt-10 flex items-center justify-center gap-x-6">
+
+                            <button
+                                onClick={() => navigate("/franchise/register")}
+                                className="mt-6 bg-red-700 text-white px-10 py-3 rounded-lg text-lg font-semibold shadow hover:bg-indigo-800 transition"
+                            >
+                                Apply for Franchise
+                            </button>
+                        </div>
                 <div
                     className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                     aria-hidden="true"
@@ -185,6 +194,7 @@ export default function Home() {
                                 Register Now
                             </button>
                         </div>
+            
                     </div>
                 </div>
 
