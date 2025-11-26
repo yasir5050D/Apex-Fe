@@ -31,6 +31,8 @@ export default function FranchiseRegisterForm() {
     const validate = () => {
         let newErrors: Record<string, string> = {};
 
+        if(!form.franchiseType) newErrors.gender = "Select Franchise Type"
+
         if (!form.fullName.trim()) newErrors.fullName = "Full Name is required";
         if (!form.fatherName.trim()) newErrors.fatherName = "Father Name is required";
 
@@ -91,6 +93,7 @@ export default function FranchiseRegisterForm() {
                 if (data.pdfUrl) window.open(data.pdfUrl, "_blank");
 
                 setForm({
+                    franchiseType: "",
                     fullName: "",
                     fatherName: "",
                     gender: "",
