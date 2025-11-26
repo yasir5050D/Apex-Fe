@@ -53,6 +53,8 @@ export default function Home() {
                             <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">
                                 Home
                             </a>
+                              <a href="/franchise" className="text-gray-700 hover:text-blue-600 transition-colors">Franchise</a>
+
                             <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">
                                 About
                             </a>
@@ -96,6 +98,7 @@ export default function Home() {
                                 >
                                     Home
                                 </a>
+                                  <a href="/franchise" className="text-gray-700 hover:text-blue-600 transition-colors py-2">Franchise</a>
                                 <a
                                     href="#about"
                                     className="text-gray-700 hover:text-blue-600 transition-colors py-2"
@@ -550,8 +553,8 @@ export default function Home() {
                                         <span>PS</span>
                                     </div>
                                     <div>
-                                        <div className="text-gray-900">Priya Sharma</div>
-                                        <p className="text-gray-600">Parent, Delhi</p>
+                                        <div className="text-gray-900">Shakeel Ahmad</div>
+                                        <p className="text-gray-600">Shopian, J&K</p>
                                     </div>
                                 </div>
                             </CardContent>
@@ -573,8 +576,8 @@ export default function Home() {
                                         <span>RK</span>
                                     </div>
                                     <div>
-                                        <div className="text-gray-900">Rajesh Kumar</div>
-                                        <p className="text-gray-600">Parent, Mumbai</p>
+                                        <div className="text-gray-900">Mohammad Ayoub</div>
+                                        <p className="text-gray-600">Parent, Shopian</p>
                                     </div>
                                 </div>
                             </CardContent>
@@ -596,8 +599,8 @@ export default function Home() {
                                         <span>AN</span>
                                     </div>
                                     <div>
-                                        <div className="text-gray-900">Anita Nair</div>
-                                        <p className="text-gray-600">Parent, Bangalore</p>
+                                        <div className="text-gray-900">Nazir Ahmad</div>
+                                        <p className="text-gray-600">Parent, Shopian</p>
                                     </div>
                                 </div>
                             </CardContent>
