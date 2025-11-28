@@ -24,6 +24,7 @@ import { Button } from "@/components/button";
 import { Card, CardContent } from "@/components/Card";
 import { Input } from "@/components/input";
 import Textarea from "@/components/textarea";
+import ProgramCard from "@/components/ProgramCard";
 
 export default function Home() {
 
@@ -154,15 +155,15 @@ export default function Home() {
                     this program boosts concentration, memory retention, speed & accuracy, visualization, problem-solving
                     skills, and overall academic performance.
                 </p>
-                 <div className="mt-10 flex items-center justify-center gap-x-6">
+                <div className="mt-10 flex items-center justify-center gap-x-6">
 
-                            <button
-                                onClick={() => navigate("/franchise/register")}
-                                className="mt-6 bg-red-700 text-white px-10 py-3 rounded-lg text-lg font-semibold shadow hover:bg-indigo-800 transition"
-                            >
-                                Apply for Franchise
-                            </button>
-                        </div>
+                    <button
+                        onClick={() => navigate("/franchise/register")}
+                        className="mt-6 bg-red-700 text-white px-10 py-3 rounded-lg text-lg font-semibold shadow hover:bg-indigo-800 transition"
+                    >
+                        Apply for Franchise
+                    </button>
+                </div>
                 <div
                     className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                     aria-hidden="true"
@@ -194,7 +195,7 @@ export default function Home() {
                                 Register Now
                             </button>
                         </div>
-            
+
                     </div>
                 </div>
 
@@ -302,166 +303,52 @@ export default function Home() {
             </section>
 
             {/* Programs Section */}
-            <section id="programs" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-                <div className="container mx-auto px-4">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-gray-900 mb-4">Our Programs</h2>
-                        <p className="text-gray-600">
+            <section id="programs" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+                <div className="container mx-auto px-6">
+                    {/* Section Header */}
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                            Our Programs
+                        </h2>
+                        <p className="text-gray-600 text-lg">
                             Structured curriculum designed for different age groups and skill levels
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {/* Level 1 */}
-                        <Card className="bg-white hover:shadow-xl transition-shadow">
-                            <CardContent className="p-8">
-                                <div className="inline-block px-3 py-1 bg-blue-100 rounded-full mb-4">
-                                    <span style={{ color: '#0057A3' }}>Level 1</span>
-                                </div>
-                                <h3 className="text-gray-900 mb-3">Foundation Course</h3>
-                                <p className="text-gray-600 mb-6">Ages 5-7 years</p>
-                                <ul className="space-y-3 mb-6">
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Basic abacus operations</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Number recognition & counting</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Simple addition & subtraction</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Visual memory exercises</span>
-                                    </li>
-                                </ul>
-                                <Button className="w-full bg-indigo-600 text-white" onClick={() => navigate("/register")}>
+                    {/* Program Grid */}
+                    <div className="grid md:grid-cols-2 gap-10">
 
-                                    Enroll Now
-                                </Button>
-                            </CardContent>
-                        </Card>
+                        {/* Level 1 */}
+                        <ProgramCard
+                            level="Level 1"
+                            title="Abacus Junior"
+                            grade="Grade 1st – 4th"
+                            color="blue"
+                            points={[
+                                "Brain Development Program",
+                                "Focus • Concentration • Memory",
+                            ]}
+                            buttonColor="bg-indigo-600"
+                            onClick={() => navigate("/register")}
+                        />
 
                         {/* Level 2 */}
-                        <Card
-                            className="bg-white hover:shadow-xl transition-shadow border-2"
-                            style={{ borderColor: '#4CAF50' }}
-                        >
-                            <CardContent className="p-8">
-                                <div className="inline-block px-3 py-1 bg-green-100 rounded-full mb-4">
-                                    <span style={{ color: '#4CAF50' }}>Level 2 - Popular</span>
-                                </div>
-                                <h3 className="text-gray-900 mb-3">Intermediate Course</h3>
-                                <p className="text-gray-600 mb-6">Ages 8-10 years</p>
-                                <ul className="space-y-3 mb-6">
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Advanced calculations</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Mental math techniques</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Multiplication & division</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Speed & accuracy training</span>
-                                    </li>
-                                </ul>
-                                <Button className="w-full" style={{ backgroundColor: '#4CAF50' }}>
-                                    Enroll Now
-                                </Button>
-                            </CardContent>
-                        </Card>
-
-                        {/* Level 3 */}
-                        <Card className="bg-white hover:shadow-xl transition-shadow">
-                            <CardContent className="p-8">
-                                <div className="inline-block px-3 py-1 bg-yellow-100 rounded-full mb-4">
-                                    <span style={{ color: '#D4A747' }}>Level 3</span>
-                                </div>
-                                <h3 className="text-gray-900 mb-3">Advanced Course</h3>
-                                <p className="text-gray-600 mb-6">Ages 11+ years</p>
-                                <ul className="space-y-3 mb-6">
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Complex problem solving</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Competition preparation</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Decimal & fraction operations</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle2
-                                            style={{ color: '#4CAF50' }}
-                                            size={20}
-                                            className="flex-shrink-0 mt-0.5"
-                                        />
-                                        <span className="text-gray-700">Advanced mental techniques</span>
-                                    </li>
-                                </ul>
-                                <Button className="w-full" style={{ backgroundColor: '#0057A3' }} onClick={() => navigate("/register")}>
-                                    Enroll Now
-                                </Button>
-                            </CardContent>
-                        </Card>
+                        <ProgramCard
+                            level="Level 2"
+                            title="Abacus Challenger"
+                            grade="5th – 10th"
+                            color="green"
+                            points={[
+                                "Brain Development Program",
+                                "Focus • Concentration • Memory",
+                            ]}
+                            buttonColor="bg-green-600"
+                            onClick={() => navigate("/register")}
+                        />
                     </div>
                 </div>
             </section>
+
 
             {/* Benefits Section */}
             <section id="benefits" className="py-20 bg-white">

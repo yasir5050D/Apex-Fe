@@ -99,6 +99,10 @@ export function useFranchiseForm() {
                         </a>
                     `,
                     showConfirmButton: false,
+                    timer: 30000,
+                    didClose: () => {
+                        window.location.href = "/";
+                    },
                     icon: "success",
                 });
 
