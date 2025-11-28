@@ -4,9 +4,6 @@ import { Button } from "@/components/button";
 import { Card, CardContent } from "@/components/Card";
 import LogoIcon from "@/components/icons/LogoIcon";
 
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
-
 export default function RegistrationConfirmation() {
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -69,24 +66,6 @@ export default function RegistrationConfirmation() {
         tehsil,
     } = state;
 
-    const generatePDF = async () => {
-        const element = document.getElementById("pdf-area");
-
-        const canvas = await html2canvas(element, {
-            scale: 2,
-            useCORS: true,
-            scrollY: -window.scrollY,
-        });
-
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF("p", "mm", "a4");
-
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const imgHeight = (canvas.height * pdfWidth) / canvas.width;
-
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
-        pdf.save(`Registration_${userId}.pdf`);
-    };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4 sm:p-6 print:bg-white">
